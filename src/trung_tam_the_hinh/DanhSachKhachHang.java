@@ -29,21 +29,25 @@ public class DanhSachKhachHang {
     }
 
     public void print() {
-        for (KhachHang k :arr){
+        for (KhachHang k : arr) {
             k.print();
+            System.out.println("Tinh tien " + k.tongGia());
         }
     }
 
-    public List<KhachHang> findMaxSpendMoneyClient(){
+    public Long findMaxGia(){
+        Long t = 0L;
+        for(KhachHang k : this.arr){
+            t = Math.max(t, k.tongGia());
+        }
+        return t;
+    }
+
+    public List<KhachHang> findMaxSpendMoneyClient() {
         List<KhachHang> khList = new ArrayList<>();
-        int tempPrice = 0;
-        for (KhachHang k : this.arr){
-            if (tempPrice < k.priceTotal()){
-                tempPrice = k.priceTotal();
-                khList.clear();
-                khList.add(k);
-            }
-            else if (tempPrice == k.priceTotal()){
+        Long maxGia = findMaxGia();
+        for (KhachHang k : this.arr) {
+            if(maxGia.equals(k.tongGia())){
                 khList.add(k);
             }
         }

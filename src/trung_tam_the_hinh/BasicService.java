@@ -1,32 +1,25 @@
 package trung_tam_the_hinh;
 
 public class BasicService extends ServicePackage{
-    private int classFee;
-
-    public int getClassFee() {
-        return classFee;
+    private int soLop;
+    public BasicService(int soLop){
+        this.soLop = soLop;
+        this.phiDichVu = 500L;
+        this.hoTroPT = 100L;
+        this.dichVuXongHoi = false;
+        this.chiPhiLopHoc = 100L;
     }
 
-    public void setClassFee(int classFee) {
-        this.classFee = classFee;
+    public int getSoLop() {
+        return soLop;
     }
 
-    public BasicService(){
-       this.classFee=100;
-       super.setBasicFee(500);
-       super.setPt(100);
-   }
-   @Override
-   public void print(){
-
-        System.out.println("Goi dich vu Basic");
-        super.print();
-        System.out.println(" -- Chi phi lop hoc: " + this.classFee);
-   }
+    public void setSoLop(int soLop) {
+        this.soLop = soLop;
+    }
 
     @Override
-    public int price() {
-        return this.classFee + super.getBasicFee() + super.getPt();
+    public Long tinhTien(){
+        return this.phiDichVu + this.chiPhiLopHoc * this.soLop + this.hoTroPT;
     }
-
 }

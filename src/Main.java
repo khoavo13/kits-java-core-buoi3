@@ -12,7 +12,7 @@ public class Main {
         List<KhachHang> richClient = ds.findMaxSpendMoneyClient();
 
         for (KhachHang k : richClient){
-            System.out.println("Ten khach hang "+k.getName());
+            System.out.println("Ten khach hang "+ k.getHoTen());
         }
     }
 }

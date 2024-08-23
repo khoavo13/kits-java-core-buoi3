@@ -3,52 +3,46 @@ package trung_tam_the_hinh;
 import java.util.Scanner;
 
 public class KhachHang {
-    private String name;
-    private String ID;
-    private int timeOfUse;
-    ServicePackage s;
+    private String hoTen;
+    private String cccd;
+    private int soThang;
+    private ServicePackage dichVu;
 
     public KhachHang() {
     }
 
-    public KhachHang(String name, String so_CMND, int thoiGian) {
-        this.name = name;
-        this.ID = so_CMND;
-        this.timeOfUse = thoiGian;
+    public String getHoTen() {
+        return hoTen;
     }
 
-    public String getName() {
-        return name;
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getCccd() {
+        return cccd;
     }
 
-    public String getID() {
-        return ID;
+    public void setCccd(String cccd) {
+        this.cccd = cccd;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public int getSoThang() {
+        return soThang;
     }
 
-    public int getTimeOfUse() {
-        return timeOfUse;
-    }
-
-    public void setTimeOfUse(int timeOfUse) {
-        this.timeOfUse = timeOfUse;
+    public void setSoThang(int soThang) {
+        this.soThang = soThang;
     }
 
     public void enter(){
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ten khach hang: ");
-        this.name = sc.nextLine();
-        System.out.print("Nhap so CMND: ");
-        this.ID = sc.nextLine();
-        System.out.print("Nhap thoi gian muon su dung dich vu: ");
-        this.timeOfUse = sc.nextInt();
+        this.hoTen = sc.nextLine();
+        System.out.print("Nhap so CCCD: ");
+        this.cccd = sc.nextLine();
+        System.out.print("Nhap so thang muon su dung dich vu: ");
+        this.soThang = sc.nextInt();
 
         System.out.println("1: Sử dụng dịch vụ Premium");
         System.out.println("2: Sử dụng dịch vụ Basic");
@@ -56,21 +50,22 @@ public class KhachHang {
         System.out.print("Dịch vụ lựa chọn: ");
         int option = sc.nextInt();
         if (option == 1){
-            this.s = new PremiumService();
+            this.dichVu = new PremiumService();
         }
         else if (option == 2){
-            this.s = new BasicService();
+            System.out.println("Nhap so lop");
+            int soLop = sc.nextInt();
+            this.dichVu = new BasicService(soLop);
         }
         else if (option == 3){
-            this.s = new NonMemberService();
+            this.dichVu = new NonMemberService();
         }
         System.out.println("Chuc mung ban da dang ki thanh cong");
     }
     public void print(){
-        System.out.print("Ten khach hang: " + this.name + " -- so CMND" + this.ID + " -- thoi gian su dung dich vu: " + this.timeOfUse);
-        this.s.print();
+        System.out.print("Ten khach hang: " + this.hoTen + " -- so CCCD" + this.cccd + " -- thoi gian su dung dich vu: " + this.soThang);
     }
-    public int priceTotal(){
-        return s.price() * this.timeOfUse;
+    public Long tongGia(){
+        return dichVu.tinhTien() * this.soThang;
     }
 }
